@@ -23,7 +23,6 @@ static double second(void)
 
 void main(void)
 {
-  time_t now = time(0);
   unsigned int i;
   double time;
   volatile char* array;
@@ -38,5 +37,5 @@ void main(void)
   free((void*)array);
   time = second() - time;
 
-  printf(" %d, %.3f\n", now, time);
+  printf("%.3f\n", time);
 }
