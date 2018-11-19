@@ -1,0 +1,65 @@
+
+# Generate private-public key pair. Name your key file in this case "id_rsa_aws"
+# We have skipped the passwort <pressed enter> to authomatically run the tests without typing the password. 
+$ ssh-keygen -t rsa -C "*"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/jacek/.ssh/id_rsa): /Users/jacek/.ssh/id_rsa_aws
+
+#Protect your private password with chmod 400 - only owner can access
+$ chmod 400 id_rsa_aws
+
+#instal python 
+$ brew install python3
+
+#check if python is installed
+$ python3 --version
+Python 3.7.1
+
+#instal aws cli 
+$ brew install awscli
+
+#check if aws is installed
+$ aws --version
+aws-cli/1.16.50 Python/3.7.1 Darwin/18.2.0 botocore/1.12.40
+
+#configure the aws user
+$ aws configure
+AWS Access Key ID [None]: <key id>
+AWS Secret Access Key [None]: <Access Key>
+Default region name [None]: eu-central-1
+Default output format [None]: json
+
+#import created key
+$ aws ec2 import-key-pair --key-name "my-key" --public-key-material file://~/.ssh/id_rsa_aws.pub
+
+# Create a security group with given group-name for the VPC with given vpc-id
+$ aws ec2 create-security-group --group-name dev1 --description "Cloud Computing security group" --vpc-id <VPC id>
+
+# Add rule to the group with given group-id to accept SSH connections from all addresses
+$ aws ec2 authorize-security-group-ingress --group-id <group id> --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+# Add rule to the group with given group-id to accept ping from all addresses
+$ aws ec2 authorize-security-group-ingress --group-id <group id> --protocol icmp --port -1 --cidr 0.0.0.0/0
+
+# Run one instance of system with given image-id; of t2.micro type (which describes the amount of resources, which will be assigned to the instnace); the access to the instance
+# is possible using key-pair with given key-name; security rules, which are applied to the instance are described in security groups with given ID (dev1 in that case)
+# EC2 image id is taken from documentation. Region eu-central-1.
+#https://aws.amazon.com/amazon-linux-2/release-notes/
+$ aws ec2 run-instances --image-id ami-02ea8f348fa28c108 --count 1 --instance-type t2.micro --key-name my-key --security-group-ids <group id>
+
+#Copy files to the machine
+$ scp -i id_rsa_aws <path>/linpack.c  ec2-user@<Public DNS to your ec2 machine>:~/
+$ scp -i id_rsa_aws <path>/linpack.sh  ec2-user@<Public DNS to your ec2 machine>:~/
+$ scp -i id_rsa_aws <path>/memsweep.c  ec2-user@<Public DNS to your ec2 machine>:~/
+$ scp -i id_rsa_aws <path>/memsweep.sh  ec2-user@<Public DNS to your ec2 machine>:~/
+
+$ ssh -i id_rsa_aws ec2-user@<Public DNS to your ec2 machine>
+Are you sure you want to continue connecting (yes/no)? yes
+
+[ec2-user@ip-172-31-46-226 ~]$ sudo yum update
+[ec2-user@ip-172-31-46-226 ~]$ sudo yum install -y fio
+[ec2-user@ip-172-31-46-226 ~]$ sudo yum install -y gcc
+[ec2-user@ip-172-31-46-226 ~]$ source linpack.sh
+[ec2-user@ip-172-31-46-226 ~]$ source memsweep.sh
+
+
