@@ -1,6 +1,6 @@
 
 # Generate private-public key pair. Name your key file in this case "id_rsa_aws"
-# We have skipped the passwort <pressed enter> to authomatically run the tests without typing the password. 
+# We have skipped the password <pressed enter> to automatically run the tests without typing the password.
 $ ssh-keygen -t rsa -C "*"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/jacek/.ssh/id_rsa): /Users/jacek/.ssh/id_rsa_aws
