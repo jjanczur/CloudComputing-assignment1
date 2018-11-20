@@ -8,8 +8,8 @@ fi
 echo "Running linpack benchmark" 1>&2
 
 if [[ "$SYSTEMROOT" = "C:\Windows" ]] ; then
-	result=$(./linpack.exe | tail -1)
+	RESULT=$(./linpack.exe | tail -1)
 else
-	result=$(./${EXECUTABLE} | tail -1)
+	RESULT=$(./${EXECUTABLE} | tail -1)
 fi
-echo "$result"
+echo "$RESULT"

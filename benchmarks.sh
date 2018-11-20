@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-current_time=$(date +%s)
-current_time_nice=$(date)
+CURRENT_TIME=$(date +%s)
+CURRENT_TIME_NICE=$(date)
 
 if which ec2-metadata > /dev/null; then
     PROVIDER=ec2
@@ -9,17 +9,17 @@ else
     PROVIDER=google
 fi
 
-for benchmark in cpu mem disk-random disk-sequential; do
-    RESULT_FILE=${PROVIDER}-${benchmark}.csv
-    BENCHMARK_SCRIPT=./measure-${benchmark}.sh
+for BENCHMARK in cpu mem disk-random disk-sequential; do
+    RESULT_FILE=${PROVIDER}-${BENCHMARK}.csv
+    BENCHMARK_SCRIPT=./measure-${BENCHMARK}.sh
 
     if [[ ! -x ${RESULT_FILE} ]]; then
-        echo "[$current_time_nice] creating $RESULT_FILE"
+        echo "[$CURRENT_TIME_NICE] creating $RESULT_FILE"
         echo "time,value" > ${RESULT_FILE}
     fi
 
     RESULT=$(${BENCHMARK_SCRIPT})
 
-    echo "[$current_time_nice] $benchmark benchmark result $RESULT"
-    echo "$current_time,$RESULT" >> ${RESULT_FILE}
+    echo "[$CURRENT_TIME_NICE] $BENCHMARK benchmark result $RESULT"
+    echo "$CURRENT_TIME,$RESULT" >> ${RESULT_FILE}
 done
