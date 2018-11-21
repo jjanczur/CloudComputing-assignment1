@@ -13,7 +13,7 @@ for BENCHMARK in cpu mem disk-random disk-sequential; do
     RESULT_FILE=${PROVIDER}-${BENCHMARK}.csv
     BENCHMARK_SCRIPT=./measure-${BENCHMARK}.sh
 
-    if [[ ! -x ${RESULT_FILE} ]]; then
+    if [[ ! -e ${RESULT_FILE} ]]; then
         echo "[$CURRENT_TIME_NICE] creating $RESULT_FILE"
         echo "time,value" > ${RESULT_FILE}
     fi
