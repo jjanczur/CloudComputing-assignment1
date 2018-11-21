@@ -8,14 +8,14 @@ Enter file in which to save the key (/Users/jacek/.ssh/id_rsa): /Users/jacek/.ss
 # Protect your private password with chmod 400 - only owner can access
 $ chmod 400 id_rsa_aws
 
-# Instal python 
+# Instal python - the command depends on linux/mac os distribution
 $ brew install python3
 
 # Check if python is installed
 $ python3 --version
 Python 3.7.1
 
-# Instal aws cli 
+# Instal aws cli - the command depends on linux/mac os distribution
 $ brew install awscli
 
 # Check if aws is installed
@@ -59,6 +59,7 @@ $ scp -i id_rsa_aws <path>/linpack.sh  ec2-user@<Public DNS to your ec2 machine>
 $ scp -i id_rsa_aws <path>/memsweep.c  ec2-user@<Public DNS to your ec2 machine>:~/
 $ scp -i id_rsa_aws <path>/memsweep.sh  ec2-user@<Public DNS to your ec2 machine>:~/
 
+#connect via ssh to the machine
 $ ssh -i id_rsa_aws ec2-user@<Public DNS to your ec2 machine>
 Are you sure you want to continue connecting (yes/no)? yes
 
