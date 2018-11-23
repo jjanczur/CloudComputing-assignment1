@@ -59,14 +59,14 @@ $ scp -i id_rsa_aws <path>/linpack.sh  ec2-user@<Public DNS to your ec2 machine>
 $ scp -i id_rsa_aws <path>/memsweep.c  ec2-user@<Public DNS to your ec2 machine>:~/
 $ scp -i id_rsa_aws <path>/memsweep.sh  ec2-user@<Public DNS to your ec2 machine>:~/
 
-#connect via ssh to the machine
+# Connect via ssh to the machine
 $ ssh -i id_rsa_aws ec2-user@<Public DNS to your ec2 machine>
 Are you sure you want to continue connecting (yes/no)? yes
 
 [ec2-user@ip-172-31-46-226 ~]$ sudo yum update
 [ec2-user@ip-172-31-46-226 ~]$ sudo yum install -y fio
 [ec2-user@ip-172-31-46-226 ~]$ sudo yum install -y gcc
-[ec2-user@ip-172-31-46-226 ~]$ source linpack.sh
-[ec2-user@ip-172-31-46-226 ~]$ source memsweep.sh
+
+[jacek@instance-1 ~]$ source schedule-benchmarks.sh 
 
 

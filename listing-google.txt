@@ -1,6 +1,8 @@
 listing-google.txt
 
-# Install gcloud on your local computer
+# Install gcloud on your local computer - the command depends on linux/mac os distribution
+brew tap caskroom/cask
+brew cask install google-cloud-sdk
 
 # Setup gcloud and follow the insctructions
 # Pick or create the new project
@@ -45,11 +47,18 @@ gcloud compute --project <project unique name> ssh --zone "europe-west3-c" <inst
 # To stop the machine 
 gcloud compute instances stop <instance name> --zone=europe-west3-c
 
-#copy files to instance
+# To start the machine
+gcloud compute instances start <instance name> --zone=europe-west3-c
+
+# Copy files to instance
 gcloud compute scp <path>/memsweep.c <path>/memsweep.sh <path>/linpack.c <path>/linpack.sh instance-1:~/
 
+# Instal required packages etc. 
 [jacek@instance-1 ~]$ sudo yum update
 [jacek@instance-1 ~]$ sudo yum install -y fio
 [jacek@instance-1 ~]$ sudo yum install -y gcc
-[jacek@instance-1 ~]$ source linpack.sh
-[jacek@instance-1 ~]$ source memsweep.sh
+[jacek@instance-1 ~]$ sudo yum install time
+[jacek@instance-1 ~]$ sudo yum install at
+[jacek@instance-1 ~]$ sudo systemctl enable --now atd.service
+
+[jacek@instance-1 ~]$ source schedule-benchmarks.sh 
