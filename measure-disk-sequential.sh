@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NUM_MEGS=1024
+NUM_MEGS=2048
 
 if [[ ! -e bigfile ]]; then
     dd if=/dev/zero of=bigfile bs=1M count=${NUM_MEGS} 2>&1 > /dev/null # create a 1GB file
