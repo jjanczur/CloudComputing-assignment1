@@ -36,5 +36,5 @@ void main(void)
   }
   free((void*)array);
   time = second() - time;
-  printf("Memsweep time in seconds: %.3f\n", time);
+  printf("%.3f\n", time);
 }
