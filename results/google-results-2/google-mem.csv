@@ -1,97 +1,49 @@
 time,value
-1542981491,Running memsweep benchmark
-Memsweep time in seconds: 38.000
-1542985080,Running memsweep benchmark
-Memsweep time in seconds: 34.470
-1542988681,Running memsweep benchmark
-Memsweep time in seconds: 37.910
-1542992280,Running memsweep benchmark
-Memsweep time in seconds: 38.550
-1542995881,Running memsweep benchmark
-Memsweep time in seconds: 36.730
-1542999480,Running memsweep benchmark
-Memsweep time in seconds: 38.180
-1543003081,Running memsweep benchmark
-Memsweep time in seconds: 34.500
-1543006680,Running memsweep benchmark
-Memsweep time in seconds: 36.450
-1543010281,Running memsweep benchmark
-Memsweep time in seconds: 37.440
-1543013880,Running memsweep benchmark
-Memsweep time in seconds: 37.700
-1543017481,Running memsweep benchmark
-Memsweep time in seconds: 35.690
-1543021080,Running memsweep benchmark
-Memsweep time in seconds: 38.170
-1543024680,Running memsweep benchmark
-Memsweep time in seconds: 36.210
-1543028280,Running memsweep benchmark
-Memsweep time in seconds: 35.710
-1543031880,Running memsweep benchmark
-Memsweep time in seconds: 37.000
-1543035481,Running memsweep benchmark
-Memsweep time in seconds: 7.380
-1543039080,Running memsweep benchmark
-Memsweep time in seconds: 35.460
-1543042681,Running memsweep benchmark
-Memsweep time in seconds: 34.980
-1543046281,Running memsweep benchmark
-Memsweep time in seconds: 37.960
-1543049880,Running memsweep benchmark
-Memsweep time in seconds: 35.000
-1543053481,Running memsweep benchmark
-Memsweep time in seconds: 37.530
-1543057080,Running memsweep benchmark
-Memsweep time in seconds: 38.450
-1543060681,Running memsweep benchmark
-Memsweep time in seconds: 37.720
-1543064281,Running memsweep benchmark
-Memsweep time in seconds: 37.500
-1543067881,Running memsweep benchmark
-Memsweep time in seconds: 37.670
-1543071481,Running memsweep benchmark
-Memsweep time in seconds: 37.200
-1543075080,Running memsweep benchmark
-Memsweep time in seconds: 37.210
-1543078681,Running memsweep benchmark
-Memsweep time in seconds: 37.630
-1543082281,Running memsweep benchmark
-Memsweep time in seconds: 37.220
-1543085881,Running memsweep benchmark
-Memsweep time in seconds: 37.260
-1543089480,Running memsweep benchmark
-Memsweep time in seconds: 37.510
-1543093080,Running memsweep benchmark
-Memsweep time in seconds: 37.200
-1543096680,Running memsweep benchmark
-Memsweep time in seconds: 37.690
-1543100280,Running memsweep benchmark
-Memsweep time in seconds: 36.950
-1543103880,Running memsweep benchmark
-Memsweep time in seconds: 37.750
-1543107481,Running memsweep benchmark
-Memsweep time in seconds: 37.450
-1543111081,Running memsweep benchmark
-Memsweep time in seconds: 37.000
-1543114681,Running memsweep benchmark
-Memsweep time in seconds: 37.190
-1543118280,Running memsweep benchmark
-Memsweep time in seconds: 36.450
-1543121881,Running memsweep benchmark
-Memsweep time in seconds: 36.180
-1543125481,Running memsweep benchmark
-Memsweep time in seconds: 36.930
-1543129081,Running memsweep benchmark
-Memsweep time in seconds: 35.960
-1543132681,Running memsweep benchmark
-Memsweep time in seconds: 36.480
-1543136281,Running memsweep benchmark
-Memsweep time in seconds: 36.160
-1543139881,Running memsweep benchmark
-Memsweep time in seconds: 36.460
-1543143480,Running memsweep benchmark
-Memsweep time in seconds: 37.390
-1543147080,Running memsweep benchmark
-Memsweep time in seconds: 38.180
-1543150681,Running memsweep benchmark
-Memsweep time in seconds: 36.770
+1542981491,38.000
+1542985080,34.470
+1542988681,37.910
+1542992280,38.550
+1542995881,36.730
+1542999480,38.180
+1543003081,34.500
+1543006680,36.450
+1543010281,37.440
+1543013880,37.700
+1543017481,35.690
+1543021080,38.170
+1543024680,36.210
+1543028280,35.710
+1543031880,37.000
+1543035481,7.380
+1543039080,35.460
+1543042681,34.980
+1543046281,37.960
+1543049880,35.000
+1543053481,37.530
+1543057080,38.450
+1543060681,37.720
+1543064281,37.500
+1543067881,37.670
+1543071481,37.200
+1543075080,37.210
+1543078681,37.630
+1543082281,37.220
+1543085881,37.260
+1543089480,37.510
+1543093080,37.200
+1543096680,37.690
+1543100280,36.950
+1543103880,37.750
+1543107481,37.450
+1543111081,37.000
+1543114681,37.190
+1543118280,36.450
+1543121881,36.180
+1543125481,36.930
+1543129081,35.960
+1543132681,36.480
+1543136281,36.160
+1543139881,36.460
+1543143480,37.390
+1543147080,38.180
+1543150681,36.770
