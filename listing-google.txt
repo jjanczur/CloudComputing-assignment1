@@ -18,8 +18,8 @@ Would you like to enable and retry (this will take a few minutes)?
 $ gcloud compute project-info add-metadata \
     --metadata google-compute-default-region=europe-west3,google-compute-default-zone=europe-west3-c
 
-# create an instance. The zose is europe-west3-c because on a and b there were problems with fetching the resources.
-gcloud beta compute --project=<project name> instances create instance-1 --zone=europe-west3-c --machine-type=f1-micro --subnet=default --network-tier=PREMIUM --maintenance-policy=MIGRATE --tags=http-server,https-server --image=centos-7-v20181113 --image-project=centos-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=instance-1
+# Create an instance g1-small, f1-micro etc.
+$ gcloud beta compute --project=<project id> instances create instance-1 --zone=europe-west3-c --machine-type=<instance type> --subnet=default --network-tier=PREMIUM --maintenance-policy=MIGRATE --tags=http-server,https-server --image=centos-7-v20181113 --image-project=centos-cloud --boot-disk-size=50GB --boot-disk-type=pd-standard --boot-disk-device-name=instance-1
 
 #allow http because why not
 gcloud compute --project=cc-assignment1-223016 firewall-rules create default-allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
@@ -51,14 +51,14 @@ gcloud compute instances stop <instance name> --zone=europe-west3-c
 gcloud compute instances start <instance name> --zone=europe-west3-c
 
 # Copy files to instance
-gcloud compute scp <path>/memsweep.c <path>/memsweep.sh <path>/linpack.c <path>/linpack.sh instance-1:~/
+$ gcloud compute scp <path>/linpack.c <path>/linpack.sh <path>/benchmarks.sh <path>/measure-cpu.sh <path>/measure-disk-random.sh <path>/measure-disk-sequential.sh <path>/measure-mem.sh <path>/memsweep.c <path>/memsweep.sh <path>/schedule-benchmarks.sh  instance-1:~/
 
 # Instal required packages etc. 
 [jacek@instance-1 ~]$ sudo yum update
 [jacek@instance-1 ~]$ sudo yum install -y fio
 [jacek@instance-1 ~]$ sudo yum install -y gcc
-[jacek@instance-1 ~]$ sudo yum install time
-[jacek@instance-1 ~]$ sudo yum install at
-[jacek@instance-1 ~]$ sudo systemctl enable --now atd.service
+[jacek@instance-1 ~]$ sudo yum install -y time
+[jacek@instance-1 ~]$ sudo yum install -y at
+[jacek@instance-1 ~]$ sudo atd
 
 [jacek@instance-1 ~]$ source schedule-benchmarks.sh 

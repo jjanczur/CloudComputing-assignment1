@@ -54,10 +54,7 @@ $ aws ec2 start-instances --instance-ids <instance id>
 $ aws ec2 stop-instances --instance-ids <instance id>
 
 # Copy files to the machine
-$ scp -i id_rsa_aws <path>/linpack.c  ec2-user@<Public DNS to your ec2 machine>:~/
-$ scp -i id_rsa_aws <path>/linpack.sh  ec2-user@<Public DNS to your ec2 machine>:~/
-$ scp -i id_rsa_aws <path>/memsweep.c  ec2-user@<Public DNS to your ec2 machine>:~/
-$ scp -i id_rsa_aws <path>/memsweep.sh  ec2-user@<Public DNS to your ec2 machine>:~/
+$ scp -i id_rsa_aws <path>/linpack.c <path>/linpack.sh <path>/benchmarks.sh <path>/measure-cpu.sh <path>/measure-disk-random.sh <path>/measure-disk-sequential.sh <path>/measure-mem.sh <path>/memsweep.c <path>/memsweep.sh <path>/schedule-benchmarks.sh   ec2-user@ec2-18-184-5-167.eu-central-1.compute.amazonaws.com:~/
 
 # Connect via ssh to the machine
 $ ssh -i id_rsa_aws ec2-user@<Public DNS to your ec2 machine>

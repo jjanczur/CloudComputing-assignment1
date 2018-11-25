@@ -14,7 +14,7 @@
 #include <time.h>
 #include <float.h>
 
-#define ARR_SIZE (8096 * 4096)
+#define ARR_SIZE (8192 * 16384)
 
 static double second(void)
 {
