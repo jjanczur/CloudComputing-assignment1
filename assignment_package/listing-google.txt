@@ -1,0 +1,64 @@
+listing-google.txt
+
+# Install gcloud on your local computer - the command depends on linux/mac os distribution
+brew tap caskroom/cask
+brew cask install google-cloud-sdk
+
+# Setup gcloud and follow the insctructions
+# Pick or create the new project
+$ gcloud init
+
+# list your instances and enable compute API
+$ gcloud compute instances list
+API [compute.googleapis.com] not enabled on project [680571399946]. 
+Would you like to enable and retry (this will take a few minutes)? 
+(y/N)?  y
+
+# Set the region to Frankfurt Germany -  europe-west3
+$ gcloud compute project-info add-metadata \
+    --metadata google-compute-default-region=europe-west3,google-compute-default-zone=europe-west3-c
+
+# Create an instance g1-small, f1-micro etc.
+$ gcloud beta compute --project=<project id> instances create instance-1 --zone=europe-west3-c --machine-type=<instance type> --subnet=default --network-tier=PREMIUM --maintenance-policy=MIGRATE --tags=http-server,https-server --image=centos-7-v20181113 --image-project=centos-cloud --boot-disk-size=50GB --boot-disk-type=pd-standard --boot-disk-device-name=instance-1
+
+#allow http because why not
+gcloud compute --project=cc-assignment1-223016 firewall-rules create default-allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
+
+#allow https because why not
+gcloud compute --project=cc-assignment1-223016 firewall-rules create default-allow-https --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:443 --source-ranges=0.0.0.0/0 --target-tags=https-server
+
+# In gcloud ssh key will be generated automatically and automatically saved in /.ssh/
+# The ssh key will be authomatically added to ones user account and propagate to the machine
+
+# If someone wants to create ssh key on his own there are the commands:
+
+		# Generate private-public key pair. Name your key file in this case "id_rsa_gc"
+		# We have skipped the password <pressed enter> to automatically run the tests without typing the password.
+		$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_gc -C <username>
+
+		#Check if the key has format <USERNAME>:ssh-rsa <KEY_VALUE> <USERNAME> in case it's wrong correct it
+
+		#Attach ssh key that has been created at the beggining. Check if the key has format [USERNAME]:ssh-rsa [KEY_VALUE] [USERNAME]
+		$ gcloud compute instances add-metadata instance-1  --metadata-from-file ssh-keys=/Users/jacek/.ssh/id_rsa_gc.pub
+
+#connect via SSH to the machine
+gcloud compute --project <project unique name> ssh --zone "europe-west3-c" <instance name>
+
+# To stop the machine 
+gcloud compute instances stop <instance name> --zone=europe-west3-c
+
+# To start the machine
+gcloud compute instances start <instance name> --zone=europe-west3-c
+
+# Copy files to instance
+$ gcloud compute scp <path>/linpack.c <path>/linpack.sh <path>/benchmarks.sh <path>/measure-cpu.sh <path>/measure-disk-random.sh <path>/measure-disk-sequential.sh <path>/measure-mem.sh <path>/memsweep.c <path>/memsweep.sh <path>/schedule-benchmarks.sh  instance-1:~/
+
+# Instal required packages etc. 
+[jacek@instance-1 ~]$ sudo yum update
+[jacek@instance-1 ~]$ sudo yum install -y fio
+[jacek@instance-1 ~]$ sudo yum install -y gcc
+[jacek@instance-1 ~]$ sudo yum install -y time
+[jacek@instance-1 ~]$ sudo yum install -y at
+[jacek@instance-1 ~]$ sudo atd
+
+[jacek@instance-1 ~]$ source schedule-benchmarks.sh 
