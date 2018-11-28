@@ -3,7 +3,7 @@
 NUM_MEGS=2048
 
 if [[ ! -e bigfile ]]; then
-    dd if=/dev/zero of=bigfile bs=1M count=${NUM_MEGS} 2>&1 > /dev/null # create a 1GB file
+    dd if=/dev/zero of=bigfile bs=1M count=${NUM_MEGS} >& /dev/null # create a 1GB file
     sync 2>&1 > /dev/null
 fi
 
