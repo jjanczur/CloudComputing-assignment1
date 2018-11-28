@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./linpack.sh
+source linpack.sh
