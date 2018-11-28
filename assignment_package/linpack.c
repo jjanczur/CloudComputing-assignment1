@@ -107,7 +107,7 @@ static void linpack(long nreps,int arsize)
 	// Counter helper
 	int results_size = 0;
 	
-	while (totalt<10.) {
+	while (totalt<8.) {
 		lda = arsize;
     n = arsize/2;
     arsize2d = (long)arsize*(long)arsize;

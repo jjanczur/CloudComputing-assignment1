@@ -1,11 +1,13 @@
 answers.txt
 
 Link to the anwsers with the graphs:
-https://docs.google.com/document/d/1tLFmo5Um9vCTN_bzLlrRoE-zs7pRMs2g-pI0ujxdis8/edit?usp=sharing
+https://docs.google.com/document/d/1tLFmo5Um9vCTN_bzLlrRoE-zs7pRMs2g-pI0ujxdis8/
+edit?usp=sharing
 
 To run benchmarks just run schedule-benchmarks.sh
 
-Since the aim of the assignment is not to benchmark the google against amazon machines we decided to use following setup:
+Since the aim of the assignment is not to benchmark the google against amazon 
+machines we decided to use following setup:
 
 Google f1-micro
 Disc type - HDD - 30 GB
@@ -29,45 +31,79 @@ Both machines use HW assisted virtualization
 
 CPU benchmark questions: 
 
-1. Look at linpack.sh and linpack.c and shortly describe how the benchmark works. 
-Linpack benchmark consists of the number of 64-bit floating-point operations, generally additions and multiplications,, calculates FLOPS (Floating Point Operations Per Second) of computers by running the programs that solves dense system of linear equations.The output of the script is in KFLOPS (Kilo Floating-Point Operations Per Second) and its prints the result to machine precision.
+1. Look at linpack.sh and linpack.c and shortly describe how the benchmark 
+works. 
+Linpack benchmark consists of the number of 64-bit floating-point operations, 
+generally additions and multiplications,, calculates FLOPS (Floating Point 
+Operations Per Second) of computers by running the programs that solves dense 
+system of linear equations.The output of the script is in KFLOPS (Kilo 
+Floating-Point Operations Per Second) and its prints the result to machine 
+precision.
 
-The ideal test technique for  the Linpack Benchmark is to run the same application on the systems being tested. Linpack benchmark reflect the performance of a dedicated system for solving a dense system of linear equations. Since the problem is very regular, the performance achieved is quite high, and the performance numbers give a good correction of peak performance.
+The ideal test technique for  the Linpack Benchmark is to run the same 
+application on the systems being tested. Linpack benchmark reflect the 
+performance of a dedicated system for solving a dense system of linear 
+equations. Since the problem is very regular, the performance achieved is quite 
+high, and the performance numbers give a good correction of peak performance.
 
-2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
-The LINPACK benchmark measures how fast a computer solves linear algebra calculations, LU decomposition and solving a system of linear equations. Its results are returned in number of floating point operations per second (FLOPS). 
+2. Find out what the LINPACK benchmark measures (try Google). Would you expect 
+paravirtualization to affect the LINPACK benchmark? Why? 
+The LINPACK benchmark measures how fast a computer solves linear algebra 
+calculations, LU decomposition and solving a system of linear equations. Its 
+results are returned in number of floating point operations per second (FLOPS). 
 
-As LINPACK Benchmark tasks involve only (most of the time) unprivileged instructions and are executed on the CPU of the system, we would not expect paravirtualization to affect the benchmark results until  the virtualized machine has dedicated access to the host's resources.
+As LINPACK Benchmark tasks involve only (most of the time) unprivileged 
+instructions and are executed on the CPU of the system, we would not expect 
+paravirtualization to affect the benchmark results until  the virtualized 
+machine has dedicated access to the host's resources.
 
-3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
+3. Look at your LINPACK measurements. Are they consistent with your 
+expectations? If not, what could be the reason?
 
 
 Memory benchmark questions:
 
-1. Find out how the memsweep benchmark works by looking at the shell script and the C code. Would you expect virtualization to affect the memsweep benchmark? Why? 
-Memsweep Benchmark measures memory access performance. This benchmark measures the required time to access (write and clean) buffer memory on various locations. The step width between the consecutive accesses is chosen such that a cache miss occurs and the data really has to be loaded from the memory. 
+1. Find out how the memsweep benchmark works by looking at the shell script and 
+the C code. Would you expect virtualization to affect the memsweep benchmark? 
+Why? 
+Memsweep Benchmark measures memory access performance. This benchmark measures 
+the required time to access (write and clean) buffer memory on various 
+locations. The step width between the consecutive accesses is chosen such that 
+a cache miss occurs and the data really has to be loaded from the memory. 
 
-The memory pages should be already in RAM since buffer is allocated before the measurement starts. That is why paravirtualization should not affect memory benchmark.
+The memory pages should be already in RAM since buffer is allocated before the 
+measurement starts. That is why paravirtualization should not affect memory 
+benchmark.
 
 In case of HVM/KVM we expect major effect on the memsweep benchmark because:
-“Code violates locality assumption, lots of TLB misses - high cost O(n2), O(n) lookup cost” 
+"Code violates locality assumption, lots of TLB misses - high cost O(n2), 
+O(n) lookup cost"
 
 AWS - ARR_SIZE (8192 * 16384)
 Google - ARR_SIZE (8096 * 4096)
 
-We were testing different sizes of allocated heap and decided to use different values for AWS and google. For google 32 MB for AWS 128 MB. 
+We were testing different sizes of allocated heap and decided to use different 
+values for AWS and google. For google 32 MB for AWS 128 MB. 
 
-2. Look at your memsweep measurements. Are they consistent with your expectations? If not, what could be the reason?
+2. Look at your memsweep measurements. Are they consistent with your 
+expectations? If not, what could be the reason?
 
-Comparing the results between AWS and GCLOUD shows that the GCLOUD  machine is more than 2 times slower than the AWS machine even though the heap size is 4 times bigger for AWS. 
+Comparing the results between AWS and GCLOUD shows that the GCLOUD  machine is 
+more than 2 times slower than the AWS machine even though the heap size is 4 
+times bigger for AWS. 
 
 
 
 
 Disk benchmark questions: 
 
-1. Look at the disk measurements. Are they consistent with your expectations? If not, what could be the reason? 
-Our expectations based on the fact that in our case Google uses HDD and AWS uses SSD disk and based on the documentation we expect that in case of google - HDD -  sequential access will be faster than the random, whereas in case of amazon - SSD - there should not be any significant difference between random and sequential access. 
+1. Look at the disk measurements. Are they consistent with your expectations? 
+If not, what could be the reason? 
+Our expectations based on the fact that in our case Google uses HDD and AWS 
+uses SSD disk and based on the documentation we expect that in case of google - 
+HDD -  sequential access will be faster than the random, whereas in case of 
+amazon - SSD - there should not be any significant difference between random 
+and sequential access. 
 
 In our case disc measurements are consistent with our expectations.
 
@@ -77,7 +113,13 @@ Average time of SEQUENTIAL reading of 2048MB on GCLOUD: 17.13s
 Average time of RANDOM reading of 2048MB on EC2: 33.82
 Average time of SEQUENTIAL reading of 2048MB on EC2: 34.21s
 
-2. Compare the results for the two operations (sequential, random). What are reasons for the differences?
-The difference in benchmarks’ results of sequential and random reads/writes from HDD disk comes from the higher number of seek operations needed for random reads. Seek operation is the most time consuming one during I/O process and takes place, when disk head is being positioned over the physical place, where the searched data is stored. For sequential read/write seek time is negligible, since disk sectors, which are being read/written are adjacent.
+2. Compare the results for the two operations (sequential, random). What are 
+reasons for the differences?
+The difference in benchmarks' results of sequential and random reads/writes 
+from HDD disk comes from the higher number of seek operations needed for random 
+reads. Seek operation is the most time consuming one during I/O process and 
+takes place, when disk head is being positioned over the physical place, where 
+the searched data is stored. For sequential read/write seek time is negligible, 
+since disk sectors, which are being read/written are adjacent.
 Such a situation does not occur in SSD disks, because seek time is very low. 
 
