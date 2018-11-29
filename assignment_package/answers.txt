@@ -1,6 +1,6 @@
 answers.txt
 
-Link to the anwsers with the graphs:
+Link to the answers with the graphs:
 https://docs.google.com/document/d/1tLFmo5Um9vCTN_bzLlrRoE-zs7pRMs2g-pI0ujxdis8/
 edit?usp=sharing
 
@@ -54,12 +54,23 @@ results are returned in number of floating point operations per second (FLOPS).
 
 As LINPACK Benchmark tasks involve only (most of the time) unprivileged 
 instructions and are executed on the CPU of the system, we would not expect 
-paravirtualization to affect the benchmark results until  the virtualized 
+paravirtualization to affect the benchmark results until the virtualized
 machine has dedicated access to the host's resources.
 
 3. Look at your LINPACK measurements. Are they consistent with your 
 expectations? If not, what could be the reason?
 
+The measurements performed on Google f1-micro usually yielded results of about
+2.37 GFLOPS, which was expected based on the specification of the machine.
+The one outlier, a result of 2.25 GFLOPS happened on 2018-11-24 at 12:00:00.
+The reason for that might have been increased load on the host machine at
+that time, or some automatic system maintenance tasks. Overall the results
+stay pretty consistent.
+
+The results on AWS t2.micro are about 2.06 GFLOPS which, again, matches our
+expectations based on the machine’s specification. There are two outliers, one
+at the start of the benchmark and one near the end. The reasons for them are
+probably the same as described in the previous paragraph.
 
 Memory benchmark questions:
 
