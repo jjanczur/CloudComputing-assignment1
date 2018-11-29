@@ -28,7 +28,6 @@ Virtualization - HVM (HW assisted)
 Both machines use HW assisted virtualization
 
 
-
 CPU benchmark questions: 
 
 1. Look at linpack.sh and linpack.c and shortly describe how the benchmark 
@@ -72,23 +71,25 @@ expectations based on the machine’s specification. There are two outliers, one
 at the start of the benchmark and one near the end. The reasons for them are
 probably the same as described in the previous paragraph.
 
+
 Memory benchmark questions:
 
 1. Find out how the memsweep benchmark works by looking at the shell script and 
 the C code. Would you expect virtualization to affect the memsweep benchmark? 
 Why? 
-Memsweep Benchmark measures memory access performance. This benchmark measures 
-the required time to access (write and clean) buffer memory on various 
-locations. The step width between the consecutive accesses is chosen such that 
-a cache miss occurs and the data really has to be loaded from the memory. 
+Memsweep Benchmark measures memory access performance. This benchmark measures
+the required time to access (write and clean) buffer memory in various
+locations. The step width between the consecutive accesses is chosen such that
+a cache miss occurs and the data really has to be loaded from the memory.
 
-The memory pages should be already in RAM since buffer is allocated before the 
-measurement starts. That is why paravirtualization should not affect memory 
+The memory pages should be already in RAM since buffer is allocated before the
+measurement starts. That is why paravirtualization should not affect memory
 benchmark.
 
-In case of HVM/KVM we expect major effect on the memsweep benchmark because:
-"Code violates locality assumption, lots of TLB misses - high cost O(n2), 
-O(n) lookup cost"
+In our case both of the environments are based on hardware-assisted
+virtualization, so we expect a noticeable effect on the memsweep benchmark
+because of the more complicated handling in the TLB: "Code violates locality
+assumption, lots of TLB misses - high cost O(n^2), O(n) lookup cost"
 
 AWS - ARR_SIZE (8192 * 16384)
 Google - ARR_SIZE (8096 * 4096)
@@ -99,11 +100,13 @@ values for AWS and google. For google 32 MB for AWS 128 MB.
 2. Look at your memsweep measurements. Are they consistent with your 
 expectations? If not, what could be the reason?
 
-Comparing the results between AWS and GCLOUD shows that the GCLOUD  machine is 
-more than 2 times slower than the AWS machine even though the heap size is 4 
-times bigger for AWS. 
-
-
+Comparing the results between AWS and GCLOUD shows that the GCLOUD  machine
+is more than 2 times slower than the AWS machine even though the heap size is
+4 times bigger for AWS. There’s one outlier in the Google Cloud case. Such a
+big slowdown could have been caused for example by host system using swap
+memory. Otherwise the measurements are consistent within margin of error. The
+big difference between the results on Google and AWS is probably caused by the
+difference in the RAM speeds of the actual physical chips used.
 
 
 Disk benchmark questions: 
