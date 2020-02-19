@@ -3,7 +3,7 @@
 This is the repo imported from TU Berlin GitLab with the code for the assignment 1 in Cloud Computing course. 
 
 We got **maximum number of points**, so enjoy our work.    
-If you found it useful, you can give us a star.
+If you find it useful, you can give us a star.
 
 # Setup
 
