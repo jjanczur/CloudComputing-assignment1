@@ -9,8 +9,7 @@ If you found it useful, you can give us a star.
 
 To run benchmarks just run schedule-benchmarks.sh
 
-Since the aim of the assignment is not to benchmark the google against amazon 
-machines we decided to use the following setup:
+Since the aim of the assignment is not to benchmark the google against amazon machines we decided to use the following setup:
 
 * Google f1-micro
   * Disc type - HDD - 30 GB
@@ -34,16 +33,13 @@ Both machines use HW assisted virtualization.
 # CPU benchmark questions: 
 
 ## 1. Look at linpack.sh and linpack.c and shortly describe how the benchmark works. 
-Linpack benchmark consists of the number of 64-bit floating-point operations, 
-generally additions and multiplications, calculates FLOPS (Floating Point 
-Operations Per Second) of computers by running the programs that solves dense 
-system of linear equations. The output of the script is in KFLOPS (Kilo 
-Floating-Point Operations Per Second) and its prints the result to machine 
-precision.
+
+Linpack benchmark consists of the number of 64-bit floating-point operations, generally additions and multiplications, calculates FLOPS (Floating Point Operations Per Second) of computers by running the programs that solves dense system of linear equations. The output of the script is in KFLOPS (Kilo Floating-Point Operations Per Second) and its prints the result to machine precision.
 
 The ideal test technique for the Linpack Benchmark is to run the same application on the systems being tested. Linpack benchmark reflects the performance of a dedicated system for solving a dense system of linear equations. Since the problem is very regular, the performance achieved is quite high, and the performance numbers give an excellent correction of peak performance.
 
 ## 2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
+
 The LINPACK benchmark measures how fast a computer solves linear algebra calculations, LU decomposition, and solving a system of linear equations. Its results are returned in number of floating-point operations per second (FLOPS). 
 
 As LINPACK Benchmark tasks involve only (most of the time) unprivileged instructions and are executed on the CPU of the system, we would not expect paravirtualization to affect the benchmark results, until the virtualized machine has dedicated access to the host's resources.
@@ -53,9 +49,7 @@ As LINPACK Benchmark tasks involve only (most of the time) unprivileged instruct
 The measurements performed on Google f1-micro usually yielded results of about
 2.37 GFLOPS, which was expected based on the specification of the machine.
 The one outlier, a result of 2.25 GFLOPS happened on 2018-11-24 at 12:00:00.
-The reason for that might have been increased load on the host machine at
-that time, or some automatic system maintenance tasks. Overall the results
-stay pretty consistent.
+The reason for that might have been increased load on the host machine at that time, or some automatic system maintenance tasks. Overall the results stay pretty consistent.
 
 The results on AWS t2.micro are about 2.06 GFLOPS, which, again, matches our expectations based on the machine's specification. There are two outliers, one at the start of the benchmark and one near the end. The reasons for them are probably the same as described in the previous paragraph.
 
@@ -84,8 +78,7 @@ Comparing the results between AWS and GCLOUD shows that the GCLOUD  machine is m
 
 # Disk benchmark questions: 
 
-## 1. Look at the disk measurements. Are they consistent with your expectations? 
-If not, what could be the reason? 
+## 1. Look at the disk measurements. Are they consistent with your expectations? If not, what could be the reason? 
 
 Our expectations based on the fact that in our case Google uses HDD and 
 uses SSD disk and based on the documentation we expect that in case of 
@@ -95,11 +88,12 @@ and sequential access.
 
 In our case, disc measurements are consistent with our expectations.
 
-Average time of RANDOM reading of 2048MB on GCLOUD: 22.28s
-Average time of SEQUENTIAL reading of 2048MB on GCLOUD: 17.13s
+* Average time of RANDOM reading of 2048MB on GCLOUD: 22.28s
+* Average time of SEQUENTIAL reading of 2048MB on GCLOUD: 17.13s
 
-Average time of RANDOM reading of 2048MB on EC2: 33.82
-Average time of SEQUENTIAL reading of 2048MB on EC2: 34.21s
+
+* Average time of RANDOM reading of 2048MB on EC2: 33.82
+* Average time of SEQUENTIAL reading of 2048MB on EC2: 34.21s
 
 ## 2. Compare the results for the two operations (sequential, random). What are the reasons for the differences?
 
