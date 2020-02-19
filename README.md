@@ -5,6 +5,15 @@ This is the repo imported from TU Berlin GitLab with the code for the assignment
 We got **maximum number of points**, so enjoy our work.    
 If you find it useful, you can give us a star.
 
+# Tasks:
+
+* Create accounts on Amazon AWS and Google Cloud
+* Apply for Amazon AWS Educate and receive a coupon for Google Cloud credits
+* Create and prepare VMs in both platforms
+* Write performance benchmarks (CPU, disk, memory benchmarks)
+* Benchmark the 2 platforms regularly and collect the results
+* Answer questions related to your measurements
+
 # Setup
 
 To run benchmarks just run schedule-benchmarks.sh
